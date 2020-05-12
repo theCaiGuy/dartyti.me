@@ -1,8 +1,14 @@
 import Header from './Header';
-import Head from 'next/head';
+
+const background_styles = {
+  backgroundColor: 'red',
+  width: '100%',
+  display: 'inline-block',
+  alignContent: 'center'
+};
 
 const Layout = props => (
-  <div>
+  <div style={background_styles}>
     <style jsx>{`
       div {
         color: #333;
@@ -11,9 +17,7 @@ const Layout = props => (
       }
     `}</style>
     <Header />
-    <div>
-      {props.children}
-    </div>
+    {props.children}
   </div>
 );
 

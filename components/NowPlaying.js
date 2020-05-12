@@ -1,4 +1,5 @@
 import React from 'react';
+import * as colors from '../constants/color_scheme';
 
 class NowPlaying extends React.PureComponent {
   constructor() {
@@ -36,11 +37,12 @@ class NowPlaying extends React.PureComponent {
       <div className="now-playing">
         <style jsx>{`
           .now-playing {
-            background-color: #424d58;
+            background-color: ${colors.GRAY};
             color: #fff;
             height: auto;
             position: relative;
             width: 100%;
+            border-radius: 10px;
           }
           .now-playing__text {
             padding: 0px;
@@ -70,9 +72,10 @@ class NowPlaying extends React.PureComponent {
           }
           .now-playing__progress_bar {
             bottom: 0;
-            background-color: #1db954;
+            background-color: ${colors.GREEN};
             height: 12px;
             width: 100%;
+            border-radius: 5px;
           }
           .media,
           .media__bd {
@@ -81,6 +84,7 @@ class NowPlaying extends React.PureComponent {
           .media .media__img {
             float: left;
             margin-right: 10px;
+            border-radius: 10px;
           }
           .user-image {
             border-radius: 50%;
@@ -94,8 +98,8 @@ class NowPlaying extends React.PureComponent {
           }
         `}</style>
         <div className="now-playing__text media">
-          <div className="media__img">
-            <img src={this.props.track.album.images[1].url} width="300" height="300" />
+          <div>
+            <img className="media__img" src={this.props.track.album.images[1].url} width="300" height="300" />
           </div>
           <div className="now-playing__bd media__bd">
             <div className="now-playing__track-name">{this.props.track.name}</div>

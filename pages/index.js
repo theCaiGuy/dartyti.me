@@ -9,6 +9,7 @@ import { fetchQueue } from '../actions/queueActions';
 import { fetchUsers } from '../actions/usersActions';
 import { fetchPlayingContext } from '../actions/playbackActions';
 import Layout from '../components/MyLayout.js';
+import * as colors from '../constants/color_scheme';
 
 library.add(fab);
 
@@ -28,32 +29,78 @@ class App extends Component {
           {`
             .Section {
               display: inline-block;
-              width: 100%;
+              width: 70%;
               height: auto;
               text-align: center;
               align-content: center;
-              margin-left: auto;
-              margin-right: auto;
-              padding: 40px;
+              margin-left: 15%;
+              margin-right: 15%;
+              background-color: white;
+              border-radius: 20px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+              padding-top: 20px;
+              padding-bottom: 30px;
+            }
+            .HalfSectionLeft {
+              display: inline-block;
+              width: 34%;
+              height: auto;
+              text-align: center;
+              align-content: center;
+              margin-left: 15%;
+              margin-right: 1%;
+              background-color: white;
+              border-radius: 20px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+              padding-top: 20px;
+              padding-bottom: 30px;
+            }
+            .HalfSectionRight {
+              display: inline-block;
+              width: 34%;
+              height: auto;
+              text-align: center;
+              align-content: center;
+              margin-left: 1%;
+              margin-right: 15%;
+              background-color: white;
+              border-radius: 20px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+              padding-top: 20px;
+              padding-bottom: 30px;
             }
           `}
         </style>
-        <div className="Section">
-          <h1>Chat</h1>
+        <div style={{ backgroundColor: colors.BLUE }}>
+          <div className="Section">
+            <h1>About</h1>
+          </div>
         </div>
-        <div className="Section">
-          <h1>Rooms</h1>
+        <div style={{ backgroundColor: colors.PINK }}>
+          <div className="Section">
+            <h1>Chat</h1>
+          </div>
         </div>
-        <div className="Section">
-          <h1>Donate</h1>
+        <div style={{ backgroundColor: colors.ORANGE }}>
+          <div className="HalfSectionLeft">
+            <h1>Rooms</h1>
+          </div>
+          <div className="HalfSectionRight">
+            <h1>Donate</h1>
+          </div>
         </div>
-        <div className="Section">
-          <Player
-            playing={this.props.playing}
-            queue={this.props.queue}
-            users={this.props.users}
-            session={this.props.session}
-          />
+        <div style={{ backgroundColor: colors.YELLOW }}>
+          <div className="Section">
+            <Player
+              playing={this.props.playing}
+              queue={this.props.queue}
+              users={this.props.users}
+              session={this.props.session}
+            />
+          </div>
         </div>
       </Layout>
     );

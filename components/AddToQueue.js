@@ -4,6 +4,7 @@ import { injectIntl } from 'react-intl';
 
 import { searchTracks, searchTracksReset } from '../actions/searchActions';
 import { queueTrack } from '../actions/queueActions';
+import * as colors from '../constants/color_scheme';
 
 class ResultsList extends Component {
   render() {

@@ -13,7 +13,7 @@ class Player extends React.Component {
         <style jsx>
           {`
             .Player {
-              width: 70%;
+              width: 95%;
               margin-left: auto;
               margin-right: auto;
             }

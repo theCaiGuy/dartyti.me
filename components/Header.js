@@ -10,8 +10,8 @@ const headerStyle = {
   height: 'auto',
   overflow: 'auto',
   display: 'flex',
-  width: '100%',
-  alignItems: 'stretch'
+  alignItems: 'stretch',
+  width: 'auto'
 };
 
 const logoStyle = {
@@ -28,24 +28,12 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
     <div style={logoStyle}>
       <img src={'../static/dartytime_logo.png'} width="128" height="128" alt="dartyti.me" />
     </div>
-    <div className="logo_words">
+    <div>
       <h1>dartyti.me</h1>
       <div>
         {session.user ? (
           <div className="media user-header">
             <style jsx>{`
-              .logo {
-                display: inline-block;
-                width: ;
-              }
-              .logo_words {
-                display: inline-block;
-                padding: 30px;
-              }
-              .user-header {
-                float: left;
-                width: 150px;
-              }
               .user-image {
                 border-radius: 50%;
               }

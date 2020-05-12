@@ -7,9 +7,6 @@ import { fetchAvailableDevices, transferPlaybackToDevice } from '../actions/devi
 import { getIsFetchingDevices } from '../reducers';
 import { getDevices } from '../reducers';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-
 class Devices extends React.PureComponent {
   state = {
     selected: -1
