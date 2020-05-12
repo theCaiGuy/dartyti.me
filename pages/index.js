@@ -1,20 +1,18 @@
-import Link from 'next/link';
-import React from 'react';
-import withRedux from 'next-redux-wrapper';
-import Layout from '../components/MyLayout.js';
+import React, { Component } from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import Player from '../components/Player';
 import { initStore } from '../store/store';
+import withRedux from 'next-redux-wrapper';
+import PageWithIntl from '../components/PageWithIntl';
 import { fetchQueue } from '../actions/queueActions';
 import { fetchUsers } from '../actions/usersActions';
 import { fetchPlayingContext } from '../actions/playbackActions';
-import Users from '../components/Users';
-import Queue from '../components/Queue';
-import AddToQueue from '../components/AddToQueue';
-import NowPlaying from '../components/NowPlaying';
-import Devices from '../components/Devices';
-import PageWithIntl from '../components/PageWithIntl';
-import { FormattedMessage } from 'react-intl';
+import Layout from '../components/MyLayout.js';
 
-class Main extends React.Component {
+library.add(fab);
+
+class App extends Component {
   static getInitialProps({ req, store, isServer }) {
     return Promise.all([
       store.dispatch(fetchQueue()),
@@ -22,33 +20,40 @@ class Main extends React.Component {
       store.dispatch(fetchPlayingContext())
     ]);
   }
+
   render() {
     return (
       <Layout>
-        {this.props.playing.track
-          ? <NowPlaying
-              track={this.props.playing.track}
-              user={this.props.playing.user}
-              position={this.props.playing.position}
-            />
-          : null}
-        <div className="app">
-          <style jsx>
-            {`
-              .app {
-                margin: 20px;
-                padding: 20px;
-              }
-            `}
-          </style>
-          <div style={{ float: 'left' }}>
-            <Queue items={this.props.queue} session={this.props.session} />
-            {this.props.session.user !== null ? <AddToQueue /> : null}
-            {this.props.session.user !== null ? <Devices /> : null}
-          </div>
-          <div style={{ float: 'right', width: '150px' }}>
-            <Users items={this.props.users} />
-          </div>
+        <style jsx>
+          {`
+            .Section {
+              display: inline-block;
+              width: 100%;
+              height: auto;
+              text-align: center;
+              align-content: center;
+              margin-left: auto;
+              margin-right: auto;
+              padding: 40px;
+            }
+          `}
+        </style>
+        <div className="Section">
+          <h1>Chat</h1>
+        </div>
+        <div className="Section">
+          <h1>Rooms</h1>
+        </div>
+        <div className="Section">
+          <h1>Donate</h1>
+        </div>
+        <div className="Section">
+          <Player
+            playing={this.props.playing}
+            queue={this.props.queue}
+            users={this.props.users}
+            session={this.props.session}
+          />
         </div>
       </Layout>
     );
@@ -62,4 +67,6 @@ const mapStateToProps = state => ({
   session: state.session
 });
 
-export default withRedux(initStore, mapStateToProps, null)(PageWithIntl(Main));
+export default withRedux(initStore, mapStateToProps)(PageWithIntl(App));
+
+// export default App;

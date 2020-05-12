@@ -153,6 +153,11 @@ const exportedApi = io => {
       queueManager.voteUpId(socket.user, id);
     });
 
+    socket.on('vote down', id => {
+      // todo: check that user is owner
+      queueManager.voteDownId(socket.user, id);
+    });
+
     socket.on('remove track', id => {
       // todo: check that user is owner
       queueManager.removeId(socket.user, id);
@@ -210,8 +215,14 @@ const exportedApi = io => {
         } else {
           // remove user from users
           users.splice(userIndex, 1);
-          socket.emit('update users', users.map(u => u.user));
-          socket.broadcast.emit('update users', users.map(u => u.user));
+          socket.emit(
+            'update users',
+            users.map(u => u.user)
+          );
+          socket.broadcast.emit(
+            'update users',
+            users.map(u => u.user)
+          );
         }
       }
     });

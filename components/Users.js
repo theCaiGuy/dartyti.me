@@ -1,24 +1,22 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 export default ({ items }) => {
   return (
     <div>
       <style jsx>{`
-        .user-list {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
         .user-list__item {
-          display: block;
-          margin-bottom: 0.5em;
+          padding: 5px 0 5px 5px;
+          background-color: #fff;
+          height: 40px;
+          align-items: center;
         }
         .user-image {
           border-radius: 50%;
         }
         .user-name {
           line-height: 30px;
+          font-size: 16;
+          float: left;
         }
         .media,
         .media__bd {
@@ -32,11 +30,11 @@ export default ({ items }) => {
         }
         .header-2 {
           color: #999;
-          font-size: 11px;
+          font-size: 20px;
           text-transform: uppercase;
         }
       `}</style>
-      <h2 className="header-2"><FormattedMessage id="online" /></h2>
+      <h2 className="header-2">Online Users</h2>
       <ul className="user-list">
         {items.map((i, index) => {
           const userName = i.display_name || i.id;
@@ -52,7 +50,7 @@ export default ({ items }) => {
                   title={userName}
                 />
               </div>
-              <div className="user-name media__bd">
+              <div className="user-name media__bd" style={{ paddingLeft: '20px', fontSize: 16 }}>
                 {userName}
               </div>
             </li>

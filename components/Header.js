@@ -1,24 +1,14 @@
-import Link from 'next/link';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { login } from '../actions/sessionActions';
 import { mutePlayback, unmutePlayback } from '../actions/playbackActions';
 import ButtonStyle from './ButtonStyle';
 import ButtonDarkStyle from './ButtonDarkStyle';
 
-const linkStyle = {
-  lineHeight: '30px',
-  marginRight: 15
-};
-
-const mainLinkStyle = {
-  float: 'left',
-  marginRight: '10px'
-};
-
 const headerStyle = {
-  backgroundColor: '#e3ebf4',
-  padding: '20px 40px'
+  backgroundColor: '#fff',
+  padding: '20px 40px',
+  height: 'auto',
+  overflow: 'auto'
 };
 
 const getNameFromUser = user => {
@@ -27,19 +17,13 @@ const getNameFromUser = user => {
 
 const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
   <div style={headerStyle}>
-    <Link href="/">
-      <a style={Object.assign({}, linkStyle, mainLinkStyle)}>
-        <img src="/static/c-icon-128.png" height="30" />
-      </a>
-    </Link>
-    <Link href="/about">
-      <a style={linkStyle}><FormattedMessage id="about" /></a>
-    </Link>
-    {session.user
-      ? <div className="media user-header">
+    <h1>dartyti.me</h1>
+    <div>
+      {session.user ? (
+        <div className="media user-header">
           <style jsx>{`
             .user-header {
-              float: right;
+              float: left;
               width: 150px;
             }
             .user-image {
@@ -47,6 +31,7 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
             }
             .user-name {
               line-height: 30px;
+              font-weight: bold;
             }
             .media,
             .media__bd {
@@ -64,46 +49,23 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
               className="user-image"
               src={
                 (session.user.images && session.user.images.length && session.user.images[0].url) ||
-                  '/static/user-icon.png'
+                '/static/user-icon.png'
               }
               width="30"
               height="30"
               alt={getNameFromUser(session.user)}
             />
           </div>
-          <div className="user-name media__bd">
-            {getNameFromUser(session.user)}
-          </div>
+          <div className="user-name media__bd">{getNameFromUser(session.user)}</div>
         </div>
-      : <button className="btn btn--dark" style={{ float: 'right' }} onClick={login}>
+      ) : (
+        <button className="btn btn--dark" style={{ float: 'left' }} onClick={login}>
           <style jsx>{ButtonStyle}</style>
           <style jsx>{ButtonDarkStyle}</style>
-          <FormattedMessage id="login" />
-        </button>}
-    {session.user
-      ? <div className="playback-control">
-          <style jsx>
-            {ButtonStyle}
-          </style>
-          <style jsx>
-            {ButtonDarkStyle}
-          </style>
-          <style jsx>{`
-            .playback-control {
-              float: right;
-              width: 200px;
-            }
-          `}</style>
-          <button
-            className="btn btn--dark"
-            onClick={() => {
-              muted ? unmutePlayback() : mutePlayback();
-            }}
-          >
-            {muted ? 'Unmute' : 'Mute'}
-          </button>
-        </div>
-      : null}
+          Login with Spotify to sync music
+        </button>
+      )}
+    </div>
   </div>
 );
 

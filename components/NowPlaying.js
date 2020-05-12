@@ -29,7 +29,8 @@ class NowPlaying extends React.PureComponent {
     clearInterval(this.timer);
   }
   render() {
-    const percentage = +(this.state.currentPosition * 100 / this.props.track.duration_ms).toFixed(2) + '%';
+    const percentage =
+      Math.min(((this.state.currentPosition * 100) / this.props.track.duration_ms).toFixed(2), 100) + '%';
     const userName = this.props.user.display_name || this.props.user.id;
     return (
       <div className="now-playing">
@@ -37,39 +38,44 @@ class NowPlaying extends React.PureComponent {
           .now-playing {
             background-color: #424d58;
             color: #fff;
-            height: 250px;
+            height: auto;
             position: relative;
             width: 100%;
           }
           .now-playing__text {
-            padding: 40px;
+            padding: 0px;
+            overflow: hidden;
+            _overflow: visible;
+            align-items: left;
           }
           .now-playing__bd {
             padding-left: 30px;
+            float: left;
           }
           .now-playing__track-name {
-            font-size: 2em;
-            padding-top: 1.2em;
+            font-size: 3em;
+            padding-top: 2em;
+            font-weight: bold;
+            text-align: left;
           }
           .now-playing__artist-name {
-            font-size: 1.2em;
+            font-size: 2em;
             padding-bottom: 2em;
             padding-top: 0.5em;
+            float: left;
+            text-align: left;
           }
           .now-playing__user {
             padding-top: 0.5em;
           }
           .now-playing__progress_bar {
             bottom: 0;
-            background-color: #222;
-            height: 5px;
-            position: absolute;
+            background-color: #1db954;
+            height: 12px;
             width: 100%;
           }
           .media,
           .media__bd {
-            overflow: hidden;
-            _overflow: visible;
             zoom: 1;
           }
           .media .media__img {
@@ -78,6 +84,10 @@ class NowPlaying extends React.PureComponent {
           }
           .user-image {
             border-radius: 50%;
+            float: right;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
           }
           .user-name {
             line-height: 30px;
@@ -85,31 +95,22 @@ class NowPlaying extends React.PureComponent {
         `}</style>
         <div className="now-playing__text media">
           <div className="media__img">
-            <img src={this.props.track.album.images[1].url} width="170" height="170" />
+            <img src={this.props.track.album.images[1].url} width="300" height="300" />
           </div>
           <div className="now-playing__bd media__bd">
-            <div className="now-playing__track-name">
-              {this.props.track.name}
-            </div>
-            <div className="now-playing__artist-name">
-              {this.props.track.artists.map(a => a.name).join(', ')}
-            </div>
-            <div className="media__img">
-              <img
-                className="user-image"
-                src={
-                  (this.props.user.images && this.props.user.images.length && this.props.user.images[0].url) ||
-                    '/static/user-icon.png'
-                }
-                width="30"
-                height="30"
-                alt={userName}
-                title={userName}
-              />
-            </div>
-            <div className="user-name media__bd">
-              {userName}
-            </div>
+            <div className="now-playing__track-name">{this.props.track.name}</div>
+            <div className="now-playing__artist-name">{this.props.track.artists.map(a => a.name).join(', ')}</div>
+          </div>
+          <div>
+            <img
+              className="user-image"
+              src={
+                (this.props.user.images && this.props.user.images.length && this.props.user.images[0].url) ||
+                '/static/user-icon.png'
+              }
+              alt={userName}
+              title={userName}
+            />
           </div>
         </div>
         <div className="now-playing__progress">

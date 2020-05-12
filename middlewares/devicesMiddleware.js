@@ -40,16 +40,7 @@ export default store => next => action => {
         body: JSON.stringify({
           device_ids: [action.deviceId]
         })
-      })
-        .then(r => r.json())
-        .then(r => {
-          if (r.error) {
-            store.dispatch(transferPlaybackToDeviceError(r.error));
-          } else {
-            store.dispatch(transferPlaybackToDeviceSuccess());
-            store.dispatch(fetchAvailableDevices());
-          }
-        });
+      });
       break;
     }
 
