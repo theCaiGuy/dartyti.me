@@ -11,12 +11,16 @@ const headerStyle = {
   overflow: 'auto',
   display: 'flex',
   alignItems: 'stretch',
-  width: 'auto'
+  width: 'auto',
+  justifyContent: 'center',
+  textAlign: 'center'
 };
 
 const logoStyle = {
   height: '128px',
-  width: '169px'
+  width: '128px',
+  marginLeft: '69px',
+  marginRight: '69px'
 };
 
 const getNameFromUser = user => {
@@ -29,7 +33,7 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
       <img src={'../static/dartytime_logo.png'} width="128" height="128" alt="dartyti.me" />
     </div>
     <div>
-      <h1>dartyti.me</h1>
+      <h1 style={{ fontSize: '40px' }}>dartyti.me</h1>
       <div>
         {session.user ? (
           <div className="media user-header">
@@ -74,6 +78,9 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
           </button>
         )}
       </div>
+    </div>
+    <div style={logoStyle}>
+      <img src={'../static/dartytime_logo.png'} width="128" height="128" alt="dartyti.me" />
     </div>
   </div>
 );
