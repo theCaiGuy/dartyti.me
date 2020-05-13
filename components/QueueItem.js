@@ -1,48 +1,85 @@
 import React from 'react';
 
-export default ({ index, item, session, onRemoveItem, onVoteUp, onVoteDown }) => {
-  const voteBtn =
-    item.voters && session.user && item.voters.filter(v => v.id === session.user.id).length === 0 ? (
-      <button onClick={onVoteUp}>▲</button>
-    ) : (
-      <button onClick={onVoteDown}>▼</button>
-    );
+const queueElem = {
+  marginLeft: '10px',
+  marginRight: '10px',
+  fontSize: '18px',
+  borderRadius: '10px',
+  color: 'white'
+};
+
+const trackTitle = {
+  textAlign: 'left'
+};
+
+const imgStyle = {
+  float: 'left',
+  marginRight: '20px',
+  borderRadius: '10px'
+};
+
+export default ({ index, item, session, onRemoveItem, onVoteUp, onVoteDown, bgColor }) => {
+  const queueElemColor = {
+    backgroundColor: bgColor
+  };
+  const btnStyle = {
+    fontSize: '20px',
+    fontWeight: 'bold',
+    border: 0,
+    borderRadius: '50%',
+    backgroundColor: bgColor,
+    color: 'white'
+  };
+
   return (
-    <tr>
-      <style jsx>
-        {`
-          .track_title {
-            float: left;
-            text-align: left;
-          }
-        `}
-      </style>
-      <td style={{ paddingRight: '10px' }}>
-        <img src={item.track.album.images[2].url} width="60" height="60" />
-      </td>
-      <td style={{ paddingRight: '10px', fontSize: 16 }}>
-        <p className="track_title">
+    <tr style={queueElemColor}>
+      <style jsx>{`
+        .btn:hover {
+          cursor: pointer;
+        }
+      `}</style>
+      <td style={queueElem}>
+        <img style={imgStyle} src={item.track.album.images[2].url} width="60" height="60" />
+        <p style={trackTitle}>
           <b>{item.track.name}</b>
           {' - ' + item.track.artists.map(a => a.name).join(', ')}
         </p>
       </td>
-      <td style={{ paddingRight: '10px', fontSize: 16 }}>{item.user && (item.user.display_name || item.user.id)}</td>
-      <td style={{ paddingRight: '10px', fontSize: 16 }}>
+      <td style={queueElem}>{item.user && (item.user.display_name || item.user.id)}</td>
+      <td style={queueElem}>
         {item.voters.length === 1 ? item.voters.length + ' vote' : item.voters.length + ' votes'}
       </td>
-      <td style={{ paddingRight: '10px', fontSize: 16 }}>{voteBtn}</td>
-      <td style={{ paddingRight: '10px', fontSize: 16 }}>
-        {item.user && session.user && item.user.id === session.user.id ? (
-          <button
-            onClick={() => {
-              onRemoveItem(item.id);
-            }}
-          >
-            X
-          </button>
-        ) : (
-          <button disabled>X</button>
-        )}
+      <td style={queueElem}>
+        <div>
+          {item.voters && session.user && item.voters.filter(v => v.id === session.user.id).length === 0 ? (
+            <button onClick={onVoteUp} className="btn" style={btnStyle}>
+              ▲
+            </button>
+          ) : (
+            <button onClick={onVoteDown} className="btn" style={btnStyle}>
+              ▼
+            </button>
+          )}
+        </div>
+      </td>
+      <td style={queueElem}>
+        <div>
+          {item.user && session.user && item.user.id === session.user.id ? (
+            <button
+              onClick={() => {
+                onRemoveItem(item.id);
+              }}
+              style={btnStyle}
+              className="btn"
+            >
+              X
+            </button>
+          ) : (
+            <button disabled style={btnStyle}>
+              X
+            </button>
+          )}
+        </div>
       </td>
     </tr>
   );

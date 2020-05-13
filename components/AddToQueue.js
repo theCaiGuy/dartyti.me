@@ -18,7 +18,7 @@ class ResultsList extends Component {
             padding: 0;
             position: absolute;
             margin-top: 0px;
-            width: 70%;
+            width: 60%;
           }
           .add-to-queue__search-results-item {
             padding: 5px 0 5px 5px;
@@ -64,6 +64,19 @@ class ResultsList extends Component {
   }
 }
 
+const inputStyle = {
+  padding: '5px',
+  width: '100%',
+  borderRadius: '10px',
+  height: '25px',
+  marginTop: '10px',
+  marginBottom: '10px',
+  flexDirection: 'stretch',
+  fontSize: '18px',
+  border: 'solid',
+  borderColor: colors.GREEN
+};
+
 class AddToQueue extends Component {
   state = {
     text: this.props.text || '',
@@ -108,24 +121,13 @@ class AddToQueue extends Component {
   render() {
     const results = this.props.search.results;
     return (
-      <div className="add-to-queue" onBlur={this.handleBlur}>
-        <style jsx>{`
-          .add-to-queue__input {
-            padding: 5px;
-            width: 100%;
-            borderradius: 20px;
-            height: 25px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-          }
-        `}</style>
+      <div onBlur={this.handleBlur}>
         <input
-          className="add-to-queue__input"
           placeholder={'Click to search Spotify'}
           value={this.state.text}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
-          style={{ fontSize: 16 }}
+          style={inputStyle}
         />
         {results && !this.state.search_hidden ? (
           <ResultsList results={results} onSelect={this.handleSelectElement} focus={this.state.focus} />

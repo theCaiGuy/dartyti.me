@@ -4,21 +4,23 @@ import { connect } from 'react-redux';
 import QueueItem from './QueueItem';
 import { queueRemoveTrack } from '../actions/queueActions';
 import { voteUp, voteDown } from '../actions/voteActions';
+import * as colors from '../constants/color_scheme';
+
+const queueStyle = {
+  paddingBottom: '10px'
+};
+
+const queueColors = [colors.BLUE, colors.PINK, colors.ORANGE, colors.YELLOW];
 
 class Queue extends React.PureComponent {
   render() {
     const { items, session } = this.props;
     return (
-      <div style={{ paddingBottom: '10px' }}>
+      <div style={queueStyle}>
         {items.length === 0 ? (
           <p>The queue is empty...for now</p>
         ) : (
-          <table className="queue">
-            <style jsx>{`
-              .queue {
-                width: 100%;
-              }
-            `}</style>
+          <table style={{ width: '100%' }}>
             <tbody>
               {items.map((i, index) => (
                 <QueueItem
@@ -29,6 +31,7 @@ class Queue extends React.PureComponent {
                   onVoteUp={() => this.props.voteUp(i.id)}
                   onVoteDown={() => this.props.voteDown(i.id)}
                   onRemoveItem={() => this.props.queueRemoveTrack(i.id)}
+                  bgColor={queueColors[index % queueColors.length]}
                 />
               ))}
             </tbody>

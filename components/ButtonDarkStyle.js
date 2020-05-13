@@ -7,6 +7,6 @@ export default css`
     border: 0px;
     color: white;
     height: 30px;
-    font-size: 16px;
+    font-size: 18px;
   }
 `;

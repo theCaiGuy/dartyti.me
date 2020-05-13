@@ -72,24 +72,32 @@ class App extends Component {
               padding-top: 20px;
               padding-bottom: 30px;
             }
+            .Footer {
+              display: inline-block;
+              width: 100%;
+              height: auto;
+              text-align: center;
+              align-content: center;
+              margin-top: 5px;
+            }
           `}
         </style>
         <div style={{ backgroundColor: colors.BLUE }}>
           <div className="Section">
-            <h1>About</h1>
+            <h1>TODO: About</h1>
           </div>
         </div>
         <div style={{ backgroundColor: colors.PINK }}>
           <div className="Section">
-            <h1>Chat</h1>
+            <h1>TODO: Chat</h1>
           </div>
         </div>
         <div style={{ backgroundColor: colors.ORANGE }}>
           <div className="HalfSectionLeft">
-            <h1>Rooms</h1>
+            <h1>TODO: Rooms</h1>
           </div>
           <div className="HalfSectionRight">
-            <h1>Donate</h1>
+            <h1>TODO: Donate</h1>
           </div>
         </div>
         <div style={{ backgroundColor: colors.YELLOW }}>
@@ -100,6 +108,11 @@ class App extends Component {
               users={this.props.users}
               session={this.props.session}
             />
+          </div>
+          <div>
+            <div className="Footer" style={{ backgroundColor: colors.YELLOW }}>
+              <p>TODO: Footer</p>
+            </div>
           </div>
         </div>
       </Layout>

@@ -17,10 +17,32 @@ const headerStyle = {
 };
 
 const logoStyle = {
-  height: '128px',
-  width: '128px',
-  marginLeft: '69px',
+  height: '169px',
+  width: '169px',
   marginRight: '69px'
+};
+
+const userHeader = {
+  justifyContent: 'center',
+  alignItems: 'flex',
+  overflow: 'auto'
+};
+
+const userNameStyle = {
+  lineHeight: '30px',
+  fontSize: '18px',
+  float: 'left',
+  paddingLeft: '20px',
+  fontWeight: 'bold'
+};
+
+const userImgStyle = {
+  borderRadius: '50%'
+};
+
+const mediaImgStyle = {
+  float: 'left',
+  marginRight: '10px'
 };
 
 const getNameFromUser = user => {
@@ -30,57 +52,40 @@ const getNameFromUser = user => {
 const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
   <div style={headerStyle}>
     <div style={logoStyle}>
-      <img src={'../static/dartytime_logo.png'} width="128" height="128" alt="dartyti.me" />
+      <img src={'../static/dartytime_logo.png'} width="169" height="169" alt="dartyti.me" />
     </div>
     <div>
-      <h1 style={{ fontSize: '40px' }}>dartyti.me</h1>
+      <img src={'../static/word_logo.png'} width="360" alt="dartyti.me" />
       <div>
         {session.user ? (
-          <div className="media user-header">
-            <style jsx>{`
-              .user-image {
-                border-radius: 50%;
-              }
-              .user-name {
-                line-height: 30px;
-                font-weight: bold;
-              }
-              .media,
-              .media__bd {
-                overflow: hidden;
-                _overflow: visible;
-                zoom: 1;
-              }
-              .media .media__img {
-                float: left;
-                margin-right: 10px;
-              }
-            `}</style>
-            <div className="media__img">
+          <div style={userHeader}>
+            <div style={mediaImgStyle}>
               <img
-                className="user-image"
+                style={userImgStyle}
                 src={
                   (session.user.images && session.user.images.length && session.user.images[0].url) ||
-                  '/static/user-icon.png'
+                  '../static/user-icon.png'
                 }
-                width="30"
-                height="30"
+                width="40"
+                height="40"
                 alt={getNameFromUser(session.user)}
+                title={getNameFromUser(session.user)}
               />
             </div>
-            <div className="user-name media__bd">{getNameFromUser(session.user)}</div>
+            <div style={userNameStyle}>
+              {getNameFromUser(session.user)
+                ? `Welcome to the darty, ${getNameFromUser(session.user).split(' ')[0]}`
+                : 'Welcome to the darty'}
+            </div>
           </div>
         ) : (
-          <button className="btn btn--dark" style={{ float: 'left' }} onClick={login}>
+          <button className="btn btn--dark" style={{ float: 'left', width: '360px' }} onClick={login}>
             <style jsx>{ButtonStyle}</style>
             <style jsx>{ButtonDarkStyle}</style>
             Login with Spotify to sync music
           </button>
         )}
       </div>
-    </div>
-    <div style={logoStyle}>
-      <img src={'../static/dartytime_logo.png'} width="128" height="128" alt="dartyti.me" />
     </div>
   </div>
 );

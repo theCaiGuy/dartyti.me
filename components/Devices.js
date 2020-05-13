@@ -6,6 +6,32 @@ import ButtonDarkStyle from './ButtonDarkStyle';
 import { fetchAvailableDevices, transferPlaybackToDevice } from '../actions/devicesActions';
 import { getIsFetchingDevices } from '../reducers';
 import { getDevices } from '../reducers';
+import * as colors from '../constants/color_scheme.js';
+
+const header2 = {
+  color: colors.GRAY,
+  fontSize: '24px',
+  textTransform: 'uppercase'
+};
+
+const deviceList = {
+  listStyle: 'none',
+  padding: 0,
+  marginTop: '0px',
+  width: '100%'
+};
+
+const deviceStyle = {
+  height: 'auto',
+  alignItems: 'center',
+  fontSize: '18px',
+  borderRadius: '10px',
+  padding: '1px'
+};
+
+const activeText = {
+  fontWeight: 'bold'
+};
 
 class Devices extends React.PureComponent {
   state = {
@@ -16,76 +42,57 @@ class Devices extends React.PureComponent {
     const { devices, isFetching, fetchAvailableDevices, transferPlaybackToDevice } = this.props;
     return (
       <div style={{ paddingBottom: '10px' }}>
-        <h2 className="header-2">Connect to a device</h2>
+        <h2 style={header2}>Connect to a device</h2>
         <style jsx>{ButtonStyle}</style>
         <style jsx>{ButtonDarkStyle}</style>
         <style jsx>{`
-          .DeviceList {
-            list-style: none;
-            padding: 0;
-            margin-top: 0px;
-            width: 100%;
-          }
-          .device {
-            padding: 5px 0 5px 5px;
-            background-color: #fff;
-            height: auto;
-            align-items: center;
-          }
-          .device:hover {
-            padding: 5px 0 5px 5px;
+          .deviceStyle:hover {
             background-color: #eee;
-            height: auto;
-            align-items: center;
             cursor: pointer;
-          }
-          .deviceLabel {
-            flex-direction: row;
-          }
-          .header-2 {
-            color: #999;
-            font-size: 20px;
-            text-transform: uppercase;
-          }
-          .ActiveText {
-            font-weight: bold;
           }
         `}</style>
         {devices.length === 0 ? (
-          <p>Search for Playback Devices</p>
+          <button
+            className="btn btn--dark"
+            disabled={isFetching}
+            onClick={() => {
+              fetchAvailableDevices();
+            }}
+          >
+            Search for Available Devices
+          </button>
         ) : (
-          <ul className="DeviceList">
-            {devices.map((device, index) => {
-              return (
-                <li
-                  key={index}
-                  className="device"
-                  onClick={() => {
-                    if (!device.is_active) {
-                      transferPlaybackToDevice(device.id);
-                    }
-                    this.setState({
-                      selected: index
-                    });
-                    fetchAvailableDevices();
-                  }}
-                  style={{ fontSize: 16 }}
-                >
-                  {index === this.state.selected ? <p className="ActiveText">{device.name}</p> : <p>{device.name}</p>}
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <ul style={deviceList}>
+              {devices.map((device, index) => {
+                return (
+                  <li
+                    key={index}
+                    style={deviceStyle}
+                    className="deviceStyle"
+                    onClick={() => {
+                      if (!device.is_active) {
+                        transferPlaybackToDevice(device.id);
+                        window.location.reload(false);
+                      }
+                    }}
+                  >
+                    {device.is_active ? <p style={activeText}>{device.name}</p> : <p>{device.name}</p>}
+                  </li>
+                );
+              })}
+            </ul>
+            <button
+              className="btn btn--dark"
+              disabled={isFetching}
+              onClick={() => {
+                fetchAvailableDevices();
+              }}
+            >
+              Refresh Device List
+            </button>
+          </div>
         )}
-        <button
-          className="btn btn--dark"
-          disabled={isFetching}
-          onClick={() => {
-            fetchAvailableDevices();
-          }}
-        >
-          Search for Devices
-        </button>
       </div>
     );
   }
