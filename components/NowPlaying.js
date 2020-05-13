@@ -73,9 +73,9 @@ class NowPlaying extends React.PureComponent {
           .now-playing__progress_bar {
             bottom: 0;
             background-color: ${colors.GREEN};
-            height: 12px;
+            height: 16px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
           }
           .media,
           .media__bd {

@@ -26,7 +26,8 @@ const nowPlayingStyle = {
 };
 
 const queue = {
-  marginTop: '40px',
+  marginTop: '50px',
+  marginBottom: '10px',
   width: '100%',
   overflow: 'auto',
   marginLeft: 'auto',

@@ -117,15 +117,14 @@ class App extends Component {
               session={this.props.session}
             />
           </div>
-          {/* <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
-            <div style={{ ...Footer, backgroundColor: colors.YELLOW }}>
-              <p>TODO: Footer</p>
-            </div>
-          </div> */}
         </div>
         <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
           <div style={Footer}>
-            <p>TODO: Footer</p>
+            <p>
+              dartyti.me is based on the open source project{' '}
+              <a href="https://developer.spotify.com/community/showcase/c/">C - Listening Room</a>. The source code is
+              available <a href="https://github.com/theCaiGuy/dartyti.me">here</a>.
+            </p>
           </div>
         </div>
       </Layout>
