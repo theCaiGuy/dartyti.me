@@ -69,7 +69,8 @@ const Footer = {
   width: '100%',
   height: 'auto',
   textAlign: 'center',
-  alignContent: 'center'
+  alignContent: 'center',
+  color: colors.GRAY
 };
 
 const Background = {

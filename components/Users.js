@@ -11,7 +11,8 @@ const userNameStyle = {
   lineHeight: '30px',
   fontSize: '18px',
   float: 'left',
-  paddingLeft: '20px'
+  paddingLeft: '20px',
+  color: colors.GRAY
 };
 
 const userImgStyle = {

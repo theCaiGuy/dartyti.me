@@ -29,7 +29,12 @@ const deviceStyle = {
   padding: '1px'
 };
 
+const passiveText = {
+  color: colors.GRAY
+};
+
 const activeText = {
+  color: colors.GRAY,
   fontWeight: 'bold'
 };
 
@@ -77,7 +82,11 @@ class Devices extends React.PureComponent {
                       }
                     }}
                   >
-                    {device.is_active ? <p style={activeText}>{device.name}</p> : <p>{device.name}</p>}
+                    {device.is_active ? (
+                      <p style={activeText}>{device.name}</p>
+                    ) : (
+                      <p style={passiveText}>{device.name}</p>
+                    )}
                   </li>
                 );
               })}

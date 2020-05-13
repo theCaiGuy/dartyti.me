@@ -3,6 +3,7 @@ import { login } from '../actions/sessionActions';
 import { mutePlayback, unmutePlayback } from '../actions/playbackActions';
 import ButtonStyle from './ButtonStyle';
 import ButtonDarkStyle from './ButtonDarkStyle';
+import * as colors from '../constants/color_scheme';
 
 const headerStyle = {
   backgroundColor: '#fff',
@@ -33,7 +34,8 @@ const userNameStyle = {
   fontSize: '18px',
   float: 'left',
   paddingLeft: '20px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  color: colors.GRAY
 };
 
 const userImgStyle = {

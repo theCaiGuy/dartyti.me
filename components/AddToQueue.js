@@ -19,6 +19,7 @@ class ResultsList extends Component {
             position: absolute;
             margin-top: 0px;
             width: 66%;
+            color: ${colors.GRAY};
           }
           .add-to-queue__search-results-item {
             padding: 5px 0 5px 5px;
