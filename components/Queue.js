@@ -7,7 +7,8 @@ import { voteUp, voteDown } from '../actions/voteActions';
 import * as colors from '../constants/color_scheme';
 
 const queueStyle = {
-  paddingBottom: '10px'
+  paddingBottom: '10px',
+  color: colors.GRAY
 };
 
 const queueColors = [colors.BLUE, colors.PINK, colors.ORANGE, colors.YELLOW];
