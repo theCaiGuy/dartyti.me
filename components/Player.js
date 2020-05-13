@@ -65,18 +65,27 @@ class Player extends React.Component {
               user={this.props.playing.user}
               position={this.props.playing.position}
             />
-          ) : null}
+          ) : (
+            <div>
+              <h2 style={header2}>Nothing's playing...</h2>
+              <h2 style={header2}>Start the music by adding a song to the queue!</h2>
+            </div>
+          )}
         </div>
         <div style={queue}>
-          {this.props.session.user !== null ? <AddToQueue /> : <h2 style={header2}>Login to Spotify to sync music</h2>}
+          {this.props.session.user !== null ? <AddToQueue /> : <h2 style={header2}>Log in to Spotify to add songs</h2>}
           <h2 style={header2}>Up Next</h2>
           <Queue items={this.props.queue} session={this.props.session} />
         </div>
         <div style={users_devices}>
           <div style={users}>
+            <h2 style={header2}>Online Users</h2>
             <Users items={this.props.users} />
           </div>
-          <div style={devices}>{this.props.session.user !== null ? <Devices /> : null}</div>
+          <div style={devices}>
+            <h2 style={header2}>Connect to a device</h2>
+            {this.props.session.user !== null ? <Devices /> : null}
+          </div>
         </div>
       </div>
     );

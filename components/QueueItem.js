@@ -5,7 +5,8 @@ const queueElem = {
   marginRight: '10px',
   fontSize: '18px',
   borderRadius: '10px',
-  color: 'white'
+  color: 'white',
+  height: '100%'
 };
 
 const trackTitle = {
@@ -29,7 +30,9 @@ export default ({ index, item, session, onRemoveItem, onVoteUp, onVoteDown, bgCo
     border: 0,
     borderRadius: '50%',
     backgroundColor: bgColor,
-    color: 'white'
+    color: 'white',
+    width: '100%',
+    height: '100%'
   };
 
   return (

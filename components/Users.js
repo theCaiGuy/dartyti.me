@@ -1,12 +1,6 @@
 import React from 'react';
 import * as colors from '../constants/color_scheme.js';
 
-const header2 = {
-  color: colors.GRAY,
-  fontSize: '24px',
-  textTransform: 'uppercase'
-};
-
 const userNameStyle = {
   lineHeight: '30px',
   fontSize: '18px',
@@ -46,7 +40,6 @@ export default ({ items }) => {
           background-color: #eee;
         }
       `}</style>
-      <h2 style={header2}>Online Users</h2>
       <ul style={continerStyle}>
         {items.map((i, index) => {
           const userName = i.display_name || i.id;
