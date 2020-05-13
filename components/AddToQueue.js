@@ -18,7 +18,7 @@ class ResultsList extends Component {
             padding: 0;
             position: absolute;
             margin-top: 0px;
-            width: 60%;
+            width: 66%;
           }
           .add-to-queue__search-results-item {
             padding: 5px 0 5px 5px;
@@ -49,7 +49,11 @@ class ResultsList extends Component {
             <li key={r.id} className="add-to-queue__search-results-item" onClick={() => this.props.onSelect(r.id)}>
               <div className="container">
                 <div className="album-img">
-                  <img src={r.album.images[2].url} />
+                  <img
+                    src={r.album.images[2] ? r.album.images[2].url : '../static/dartytime_logo_alt.png'}
+                    width="64"
+                    height="64"
+                  />
                 </div>
                 <div className="flex-item">
                   <div className="song-name">{r.name}</div>
@@ -66,18 +70,29 @@ class ResultsList extends Component {
 
 const inputStyle = {
   padding: '5px',
-  width: '100%',
-  borderRadius: '10px',
   height: '25px',
-  marginTop: '10px',
-  marginBottom: '10px',
-  flexDirection: 'stretch',
   fontSize: '18px',
-  border: 'solid',
-  borderColor: colors.GREEN
+  border: 'none',
+  float: 'left',
+  width: '100%'
 };
 
-class AddToQueue extends Component {
+const inputDiv = {
+  border: 'solid',
+  borderColor: colors.GREEN,
+  height: 'auto',
+  alignItems: 'stretch',
+  overflow: 'auto',
+  borderRadius: '10px',
+  position: 'relative'
+};
+
+const searchDropdownStyle = {
+  alignItems: 'stretch',
+  marginTop: '1px'
+};
+
+class AddToQueue extends React.PureComponent {
   state = {
     text: this.props.text || '',
     focus: -1,
@@ -121,19 +136,23 @@ class AddToQueue extends Component {
   render() {
     const results = this.props.search.results;
     return (
-      <div onBlur={this.handleBlur}>
-        <input
-          placeholder={'Click to search Spotify'}
-          value={this.state.text}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          style={inputStyle}
-        />
-        {results && !this.state.search_hidden ? (
-          <ResultsList results={results} onSelect={this.handleSelectElement} focus={this.state.focus} />
-        ) : (
-          <div />
-        )}
+      <div>
+        <div style={inputDiv}>
+          <input
+            placeholder={'Click to search Spotify'}
+            value={this.state.text}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            style={inputStyle}
+          />
+        </div>
+        <div style={searchDropdownStyle}>
+          {results && !this.state.search_hidden ? (
+            <ResultsList results={results} onSelect={this.handleSelectElement} focus={this.state.focus} />
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
     );
   }
@@ -149,4 +168,4 @@ const mapStateToProps = state => ({
   search: state.search
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(AddToQueue));
+export default connect(mapStateToProps, mapDispatchToProps)(AddToQueue);

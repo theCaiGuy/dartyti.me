@@ -13,6 +13,71 @@ import * as colors from '../constants/color_scheme';
 
 library.add(fab);
 
+const Section = {
+  display: 'inlineBlock',
+  width: '70%',
+  height: 'auto',
+  textAlign: 'center',
+  alignContent: 'center',
+  marginLeft: '15%',
+  marginRight: '15%',
+  backgroundColor: 'white',
+  borderRadius: '20px',
+  marginTop: '30px',
+  marginBottom: '30px',
+  paddingTop: '20px',
+  paddingBottom: '30px',
+  overflow: 'auto'
+};
+
+const HalfSectionLeft = {
+  display: 'inlineBlock',
+  width: '34%',
+  height: 'auto',
+  textAlign: 'center',
+  alignContent: 'center',
+  marginLeft: 'auto',
+  marginRight: '1%',
+  backgroundColor: 'white',
+  borderRadius: '20px',
+  marginTop: '30px',
+  marginBottom: '30px',
+  paddingTop: '20px',
+  paddingBottom: '30px',
+  overflow: 'auto'
+};
+
+const HalfSectionRight = {
+  display: 'inlineBlock',
+  width: '34%',
+  height: 'auto',
+  textAlign: 'center',
+  alignContent: 'center',
+  marginLeft: '1%',
+  marginRight: 'auto',
+  backgroundColor: 'white',
+  borderRadius: '20px',
+  marginTop: '30px',
+  marginBottom: '30px',
+  paddingTop: '20px',
+  paddingBottom: '30px',
+  overflow: 'auto'
+};
+
+const Footer = {
+  display: 'inlineBlock',
+  width: '100%',
+  height: 'auto',
+  textAlign: 'center',
+  alignContent: 'center'
+};
+
+const Background = {
+  width: '100%',
+  overflow: 'auto',
+  display: 'flex'
+};
+
 class App extends Component {
   static getInitialProps({ req, store, isServer }) {
     return Promise.all([
@@ -25,83 +90,26 @@ class App extends Component {
   render() {
     return (
       <Layout>
-        <style jsx>
-          {`
-            .Section {
-              display: inline-block;
-              width: 70%;
-              height: auto;
-              text-align: center;
-              align-content: center;
-              margin-left: 15%;
-              margin-right: 15%;
-              background-color: white;
-              border-radius: 20px;
-              margin-top: 30px;
-              margin-bottom: 30px;
-              padding-top: 20px;
-              padding-bottom: 30px;
-            }
-            .HalfSectionLeft {
-              display: inline-block;
-              width: 34%;
-              height: auto;
-              text-align: center;
-              align-content: center;
-              margin-left: 15%;
-              margin-right: 1%;
-              background-color: white;
-              border-radius: 20px;
-              margin-top: 30px;
-              margin-bottom: 30px;
-              padding-top: 20px;
-              padding-bottom: 30px;
-            }
-            .HalfSectionRight {
-              display: inline-block;
-              width: 34%;
-              height: auto;
-              text-align: center;
-              align-content: center;
-              margin-left: 1%;
-              margin-right: 15%;
-              background-color: white;
-              border-radius: 20px;
-              margin-top: 30px;
-              margin-bottom: 30px;
-              padding-top: 20px;
-              padding-bottom: 30px;
-            }
-            .Footer {
-              display: inline-block;
-              width: 100%;
-              height: auto;
-              text-align: center;
-              align-content: center;
-              margin-top: 5px;
-            }
-          `}
-        </style>
-        <div style={{ backgroundColor: colors.BLUE }}>
-          <div className="Section">
+        <div style={{ ...Background, backgroundColor: colors.BLUE }}>
+          <div style={Section}>
             <h1>TODO: About</h1>
           </div>
         </div>
-        <div style={{ backgroundColor: colors.PINK }}>
-          <div className="Section">
+        <div style={{ ...Background, backgroundColor: colors.PINK }}>
+          <div style={Section}>
             <h1>TODO: Chat</h1>
           </div>
         </div>
-        <div style={{ backgroundColor: colors.ORANGE }}>
-          <div className="HalfSectionLeft">
+        <div style={{ ...Background, backgroundColor: colors.ORANGE }}>
+          <div style={HalfSectionLeft}>
             <h1>TODO: Rooms</h1>
           </div>
-          <div className="HalfSectionRight">
+          <div style={HalfSectionRight}>
             <h1>TODO: Donate</h1>
           </div>
         </div>
-        <div style={{ backgroundColor: colors.YELLOW }}>
-          <div className="Section">
+        <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
+          <div style={Section}>
             <Player
               playing={this.props.playing}
               queue={this.props.queue}
@@ -109,10 +117,15 @@ class App extends Component {
               session={this.props.session}
             />
           </div>
-          <div>
-            <div className="Footer" style={{ backgroundColor: colors.YELLOW }}>
+          {/* <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
+            <div style={{ ...Footer, backgroundColor: colors.YELLOW }}>
               <p>TODO: Footer</p>
             </div>
+          </div> */}
+        </div>
+        <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
+          <div style={Footer}>
+            <p>TODO: Footer</p>
           </div>
         </div>
       </Layout>

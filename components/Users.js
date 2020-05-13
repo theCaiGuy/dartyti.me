@@ -31,8 +31,10 @@ const userListItem = {
   borderRadius: '10px'
 };
 
-const getNameFromUser = user => {
-  return user.display_name || user.id;
+const continerStyle = {
+  width: '100%',
+  alignItems: 'center',
+  padding: 0
 };
 
 export default ({ items }) => {
@@ -44,7 +46,7 @@ export default ({ items }) => {
         }
       `}</style>
       <h2 style={header2}>Online Users</h2>
-      <ul>
+      <ul style={continerStyle}>
         {items.map((i, index) => {
           const userName = i.display_name || i.id;
           return (

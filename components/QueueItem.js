@@ -9,7 +9,8 @@ const queueElem = {
 };
 
 const trackTitle = {
-  textAlign: 'left'
+  textAlign: 'left',
+  marginRight: '20px'
 };
 
 const imgStyle = {
