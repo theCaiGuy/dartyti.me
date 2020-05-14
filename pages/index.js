@@ -75,8 +75,13 @@ const Footer = {
 
 const Background = {
   width: '100%',
+  height: '100%',
   overflow: 'auto',
-  display: 'flex'
+  display: 'flex',
+  marginBottom: 0,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'top left',
+  backgroundSize: '100%'
 };
 
 class App extends Component {
@@ -109,7 +114,15 @@ class App extends Component {
             <h1>TODO: Donate</h1>
           </div>
         </div>
-        <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
+        <div
+          style={{
+            ...Background,
+            backgroundColor: colors.YELLOW,
+            backgroundImage: 'url(../static/surf.png)',
+            textAlign: 'center',
+            flexDirection: 'column'
+          }}
+        >
           <div style={Section}>
             <Player
               playing={this.props.playing}
@@ -118,15 +131,15 @@ class App extends Component {
               session={this.props.session}
             />
           </div>
+          <p>
+            dartyti.me is based on the open source project{' '}
+            <a href="https://developer.spotify.com/community/showcase/c/">C - Listening Room</a>. The source code is
+            available <a href="https://github.com/theCaiGuy/dartyti.me">here</a>. Logo courtesy of{' '}
+            <a href="https://logomakr.com/">Logo Makr</a>.
+          </p>
         </div>
         <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
-          <div style={Footer}>
-            <p>
-              dartyti.me is based on the open source project{' '}
-              <a href="https://developer.spotify.com/community/showcase/c/">C - Listening Room</a>. The source code is
-              available <a href="https://github.com/theCaiGuy/dartyti.me">here</a>.
-            </p>
-          </div>
+          <div style={Footer}></div>
         </div>
       </Layout>
     );

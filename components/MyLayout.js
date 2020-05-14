@@ -1,7 +1,7 @@
 import Header from './Header';
 
 const background_styles = {
-  backgroundColor: 'red',
+  backgroundColor: 'white',
   width: '100%',
   display: 'inline-block',
   alignContent: 'center'
