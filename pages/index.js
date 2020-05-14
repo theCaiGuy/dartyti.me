@@ -99,6 +99,7 @@ class App extends Component {
         <div style={{ ...Background, backgroundColor: colors.BLUE }}>
           <div style={Section}>
             <h1>TODO: About</h1>
+            <p>Welcome to my site</p>
           </div>
         </div>
         <div style={{ ...Background, backgroundColor: colors.PINK }}>
