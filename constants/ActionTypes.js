@@ -41,3 +41,6 @@ export const VOTE_UP_SUCCESS = 'VOTE_UP_SUCCESS';
 
 export const VOTE_DOWN = 'VOTE_DOWN';
 export const VOTE_DOWN_SUCCESS = 'VOTE_DOWN_SUCCESS';
+
+export const VOTE_SKIP = 'VOTE_SKIP';
+export const VOTE_SKIP_SUCCESS = 'VOTE_SKIP_SUCCESS';

@@ -63,10 +63,16 @@ class Player extends React.Component {
             track={this.props.playing ? this.props.playing.track : null}
             user={this.props.playing ? this.props.playing.user : null}
             position={this.props.playing ? this.props.playing.position : 0}
+            total_votes={
+              this.props.playing && this.props.playing.track && this.props.playing.track.skip_voters
+                ? this.props.playing.track.skip_voters.length
+                : 0
+            }
+            total_users={this.props.users.length - 1 || 0}
+            logged_in={this.props.session.user ? true : false}
           />
         </div>
         <div style={queue}>
-          {/* {this.props.session.user !== null ? <AddToQueue /> : <h2 style={header2}>Log in to Spotify to add songs</h2>} */}
           <AddToQueue logged_in={this.props.session.user ? true : false} />
           <h2 style={header2}>Up Next</h2>
           <Queue items={this.props.queue} session={this.props.session} />

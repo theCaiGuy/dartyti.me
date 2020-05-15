@@ -8,11 +8,11 @@ import { getIsFetchingDevices } from '../reducers';
 import { getDevices } from '../reducers';
 import * as colors from '../constants/color_scheme.js';
 
-const header2 = {
-  color: colors.GRAY,
-  fontSize: '24px',
-  textTransform: 'uppercase'
-};
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fas);
 
 const deviceList = {
   listStyle: 'none',
@@ -23,19 +23,21 @@ const deviceList = {
 
 const deviceStyle = {
   height: 'auto',
+  minHeight: '50px',
   alignItems: 'center',
   fontSize: '18px',
-  borderRadius: '10px',
-  padding: '1px'
+  borderRadius: '10px'
 };
 
 const passiveText = {
-  color: colors.GRAY
+  color: colors.GRAY,
+  padding: '8px'
 };
 
 const activeText = {
   color: colors.GRAY,
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  padding: '8px'
 };
 
 class Devices extends React.PureComponent {
@@ -82,7 +84,10 @@ class Devices extends React.PureComponent {
                     }}
                   >
                     {device.is_active ? (
-                      <p style={activeText}>{device.name}</p>
+                      <div style={activeText}>
+                        {device.name}
+                        <FontAwesomeIcon icon={['fas', 'headphones']} color="black" style={{ marginLeft: '10px' }} />
+                      </div>
                     ) : (
                       <p style={passiveText}>{device.name}</p>
                     )}
@@ -92,6 +97,7 @@ class Devices extends React.PureComponent {
             </ul>
             <button
               className="btn btn--dark"
+              style={{ marginTop: '5px' }}
               disabled={isFetching}
               onClick={() => {
                 fetchAvailableDevices();

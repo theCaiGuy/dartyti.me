@@ -21,6 +21,7 @@ const mediaImgStyle = {
 const userListItem = {
   padding: '5px',
   height: 'auto',
+  minHeight: '45px',
   alignItems: 'center',
   overflow: 'auto',
   borderRadius: '10px'

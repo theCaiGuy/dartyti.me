@@ -88,7 +88,8 @@ const queueManager = new QueueManager({
         }).toJSON()
       );
     }
-  }
+  },
+  users: users
 });
 
 queueManager.read();
@@ -156,6 +157,11 @@ const exportedApi = io => {
     socket.on('vote down', id => {
       // todo: check that user is owner
       queueManager.voteDownId(socket.user, id);
+    });
+
+    socket.on('vote skip', id => {
+      // todo: check that user is owner
+      queueManager.voteSkipId(socket.user, id);
     });
 
     socket.on('remove track', id => {

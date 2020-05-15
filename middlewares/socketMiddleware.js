@@ -1,4 +1,11 @@
-import { VOTE_UP, VOTE_DOWN, LOGIN_SUCCESS, QUEUE_REMOVE_TRACK, QUEUE_TRACK } from '../constants/ActionTypes';
+import {
+  VOTE_UP,
+  VOTE_DOWN,
+  VOTE_SKIP,
+  LOGIN_SUCCESS,
+  QUEUE_REMOVE_TRACK,
+  QUEUE_TRACK
+} from '../constants/ActionTypes';
 import { updateUsers } from '../actions/usersActions';
 import { updateQueue, queueEnded } from '../actions/queueActions';
 import { playTrack, updateNowPlaying } from '../actions/playbackActions';
@@ -54,6 +61,9 @@ export function socketMiddleware(store) {
           break;
         case VOTE_DOWN:
           socket.emit('vote down', action.id);
+          break;
+        case VOTE_SKIP:
+          socket.emit('vote skip', action.id);
           break;
         default:
           break;

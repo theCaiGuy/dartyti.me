@@ -14,6 +14,7 @@ class QueueManager {
     this.getToken = options.getToken;
     this.spotifyApi = options.spotifyApi;
     this.playedHistory = [];
+    this.users = options.users;
   }
 
   handleQueueChanged() {
@@ -119,6 +120,23 @@ class QueueManager {
         this.handleQueueChanged();
         return true;
       }
+    }
+  }
+
+  voteSkipId(user, id) {
+    if (this.playingContext.track.skip_voters) {
+      const voters = this.playingContext.track.skip_voters;
+      const userVotes = voters.filter(v => v.id === user.id);
+      if (userVotes.length === 0) {
+        this.playingContext.track.skip_voters.push(user);
+      }
+    } else {
+      this.playingContext.track.skip_voters = [user];
+    }
+    console.log(JSON.stringify(user));
+    console.log(`${this.playingContext.track.skip_voters.length} / ${this.users.length - 1} have voted to skip ${id}`);
+    if (this.playingContext.track.skip_voters.length > (this.users.length - 1) / 2) {
+      this.play();
     }
   }
 
