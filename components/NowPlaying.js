@@ -171,7 +171,7 @@ class NowPlaying extends React.PureComponent {
                     size="2x"
                     style={{ marginBottom: '5px' }}
                   />
-                  <div>{`${this.props.total_votes} / ${Math.round(this.props.total_users / 2)}`}</div>
+                  <div>{`${this.props.total_votes} / ${Math.floor(this.props.total_users / 2) + 1}`}</div>
                 </button>
               </div>
             ) : (
