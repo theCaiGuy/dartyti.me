@@ -1,3 +1,3 @@
 module.exports = {
-  HOST: process.env.HOST
+  HOST: 'http://dartyti.me'
 };
