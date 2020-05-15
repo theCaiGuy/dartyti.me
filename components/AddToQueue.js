@@ -94,11 +94,14 @@ const searchDropdownStyle = {
 };
 
 class AddToQueue extends React.PureComponent {
-  state = {
-    text: this.props.text || '',
-    focus: -1,
-    search_hidden: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: this.props.text || '',
+      focus: -1,
+      search_hidden: true
+    };
+  }
 
   handleChange = e => {
     const text = e.target.value;
@@ -138,22 +141,30 @@ class AddToQueue extends React.PureComponent {
     const results = this.props.search.results;
     return (
       <div>
-        <div style={inputDiv}>
-          <input
-            placeholder={'Click to search Spotify'}
-            value={this.state.text}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            style={inputStyle}
-          />
-        </div>
-        <div style={searchDropdownStyle}>
-          {results && !this.state.search_hidden ? (
-            <ResultsList results={results} onSelect={this.handleSelectElement} focus={this.state.focus} />
-          ) : (
-            <div />
-          )}
-        </div>
+        {this.props.logged_in ? (
+          <div>
+            <div style={inputDiv}>
+              <input
+                placeholder={'Click to search Spotify'}
+                value={this.state.text}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+                style={inputStyle}
+              />
+            </div>
+            <div style={searchDropdownStyle}>
+              {results && !this.state.search_hidden ? (
+                <ResultsList results={results} onSelect={this.handleSelectElement} focus={this.state.focus} />
+              ) : (
+                <div />
+              )}
+            </div>
+          </div>
+        ) : (
+          <div style={inputDiv}>
+            <input placeholder={'Login to Spotify to search'} disabled style={inputStyle} />
+          </div>
+        )}
       </div>
     );
   }

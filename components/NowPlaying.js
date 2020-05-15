@@ -1,5 +1,6 @@
 import React from 'react';
 import * as colors from '../constants/color_scheme';
+import ButtonDarkStyle from './ButtonDarkStyle';
 
 class NowPlaying extends React.PureComponent {
   constructor() {
@@ -15,12 +16,14 @@ class NowPlaying extends React.PureComponent {
       });
     };
   }
-  componentWillReceiveProps(props) {
-    if (this.props.position !== props.position || this.props.track !== props.track) {
-      this.setState({
-        start: Date.now(),
-        currentPosition: 0
-      });
+  componentDidUpdate(props) {
+    if (this.props.track) {
+      if (this.props.position !== props.position || this.props.track !== props.track) {
+        this.setState({
+          start: Date.now(),
+          currentPosition: 0
+        });
+      }
     }
   }
   componentDidMount() {
@@ -30,11 +33,13 @@ class NowPlaying extends React.PureComponent {
     clearInterval(this.timer);
   }
   render() {
-    const percentage =
-      Math.min(((this.state.currentPosition * 100) / this.props.track.duration_ms).toFixed(2), 100) + '%';
-    const userName = this.props.user.display_name || this.props.user.id;
+    const percentage = this.props.track
+      ? Math.min(((this.state.currentPosition * 100) / this.props.track.duration_ms).toFixed(2), 100) + '%'
+      : 0;
+    const userName = this.props.user ? this.props.user.display_name || this.props.user.id : '';
     return (
       <div className="now-playing">
+        <style jsx>{ButtonDarkStyle}</style>
         <style jsx>{`
           .now-playing {
             background-color: ${colors.GRAY};
@@ -99,22 +104,48 @@ class NowPlaying extends React.PureComponent {
         `}</style>
         <div className="now-playing__text media">
           <div>
-            <img className="media__img" src={this.props.track.album.images[1].url} width="300" height="300" />
+            <img
+              className="media__img"
+              src={this.props.track ? this.props.track.album.images[1].url : '../static/dartytime_logo_alt.png'}
+              width="300"
+              height="300"
+            />
           </div>
           <div className="now-playing__bd media__bd">
-            <div className="now-playing__track-name">{this.props.track.name}</div>
-            <div className="now-playing__artist-name">{this.props.track.artists.map(a => a.name).join(', ')}</div>
+            {this.props.track ? (
+              <div>
+                <div className="now-playing__track-name">{this.props.track.name}</div>
+                <div className="now-playing__artist-name">{this.props.track.artists.map(a => a.name).join(', ')}</div>
+                {/* <button
+                    className="btn btn--dark"
+                    onClick={() => {
+                      console.log("TODO")
+                    }}
+                  >
+                    Skip
+                  </button> */}
+              </div>
+            ) : (
+              <div>
+                <div className="now-playing__track-name">Nothing's playing...</div>
+                <div className="now-playing__artist-name">Add more songs to the queue!</div>
+              </div>
+            )}
           </div>
           <div>
-            <img
-              className="user-image"
-              src={
-                (this.props.user.images && this.props.user.images.length && this.props.user.images[0].url) ||
-                '/static/user-icon.png'
-              }
-              alt={userName}
-              title={userName}
-            />
+            {this.props.user ? (
+              <img
+                className="user-image"
+                src={
+                  (this.props.user.images && this.props.user.images.length && this.props.user.images[0].url) ||
+                  '/static/user-icon.png'
+                }
+                alt={userName}
+                title={userName}
+              />
+            ) : (
+              <div />
+            )}
           </div>
         </div>
         <div className="now-playing__progress">
