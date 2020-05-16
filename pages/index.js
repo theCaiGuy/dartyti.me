@@ -14,6 +14,9 @@ import Header from '../components/Header';
 
 library.add(fab);
 
+const opacity_top = 1.0;
+const opacity_bottom = 0.75;
+
 const Banner = {
   display: 'inlineBlock',
   width: '70%',
@@ -28,7 +31,8 @@ const Banner = {
   marginBottom: '30px',
   paddingTop: '10px',
   paddingBottom: '10px',
-  overflow: 'auto'
+  overflow: 'auto',
+  background: `linear-gradient(rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_bottom}));`
 };
 
 const Section = {
@@ -46,13 +50,13 @@ const Section = {
   marginBottom: '30px',
   paddingTop: '20px',
   paddingBottom: '30px',
-  overflow: 'auto'
+  overflow: 'auto',
+  background: `linear-gradient(rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_bottom}));`
 };
 
 const HalfSectionLeft = {
   display: 'inlineBlock',
   width: '34%',
-  // height: 'auto',
   textAlign: 'center',
   alignContent: 'center',
   marginLeft: 'auto',
@@ -63,13 +67,13 @@ const HalfSectionLeft = {
   marginBottom: '30px',
   paddingTop: '20px',
   paddingBottom: '30px',
-  overflow: 'auto'
+  overflow: 'auto',
+  background: `linear-gradient(rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_bottom}));`
 };
 
 const HalfSectionRight = {
   display: 'inlineBlock',
   width: '34%',
-  // height: 'auto',
   textAlign: 'center',
   alignContent: 'center',
   marginLeft: '1%',
@@ -80,7 +84,8 @@ const HalfSectionRight = {
   marginBottom: '30px',
   paddingTop: '20px',
   paddingBottom: '30px',
-  overflow: 'auto'
+  overflow: 'auto',
+  background: `linear-gradient(rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_top}), rgba(255,255,255,${opacity_bottom}));`
 };
 
 const Background = {

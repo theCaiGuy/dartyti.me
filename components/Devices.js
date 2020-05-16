@@ -48,7 +48,7 @@ class Devices extends React.PureComponent {
   render() {
     const { devices, isFetching, fetchAvailableDevices, transferPlaybackToDevice } = this.props;
     return (
-      <div style={{ paddingBottom: '10px' }}>
+      <div>
         <style jsx>{ButtonStyle}</style>
         <style jsx>{ButtonDarkStyle}</style>
         <style jsx>{`

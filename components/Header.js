@@ -6,20 +6,24 @@ import ButtonDarkStyle from './ButtonDarkStyle';
 import * as colors from '../constants/color_scheme';
 
 const headerStyle = {
-  backgroundColor: '#fff',
-  padding: '10px',
-  height: 'auto',
-  display: 'flex',
+  height: '100%',
   alignItems: 'stretch',
-  width: 'auto',
-  justifyContent: 'center',
-  textAlign: 'center'
+  width: '98%',
+  textAlign: 'center',
+  overflow: 'auto',
+  marginTop: '10px',
+  marginBottom: '10px',
+  marginLeft: '1%',
+  marginRight: '1%',
+  display: 'inline-block',
+  position: 'relative'
 };
 
 const logoStyle = {
-  float: 'left',
-  paddingRight: '20px',
-  width: '100%',
+  width: '15%',
+  marginRight: '1%',
+  marginLeft: '1%',
+  minWidth: '69px',
   maxWidth: '169px'
 };
 
@@ -36,7 +40,13 @@ const userNameStyle = {
 };
 
 const logoUserBox = {
-  alignContent: 'center'
+  alignSelf: 'center',
+  alignItems: 'center',
+  width: '50%',
+  marginLeft: '25%',
+  marginRight: '25%',
+  overflow: 'hidden',
+  _overflow: 'visible'
 };
 
 const userImgStyle = {
@@ -46,9 +56,14 @@ const userImgStyle = {
 
 const wordLogoStyle = {
   marginTop: '10px',
+  marginBottom: '10px',
   width: '100%',
-  maxWidth: '420px'
+  fontSize: '69px',
+  fontFamily: 'Ballpark',
+  color: colors.BLUE
 };
+
+const party_names = ['Endless KA', 'UnlimiteDTD', 'Dunch', 'Linner', 'Terman Fountain'];
 
 const getNameFromUser = user => {
   return user.display_name || user.id;
@@ -56,39 +71,42 @@ const getNameFromUser = user => {
 
 const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
   <div style={headerStyle}>
+    <div>
+      <img src={'../static/dartytime_logo.png'} alt="dartyti.me" style={{ ...logoStyle, float: 'left' }} />
+    </div>
+
+    <div>
+      <img src={'../static/dartytime_logo_alt.png'} alt="dartyti.me" style={{ ...logoStyle, float: 'right' }} />
+    </div>
+
     <div style={logoUserBox}>
-      <div style={logoStyle}>
-        <img src={'../static/dartytime_logo.png'} width="169" height="169" alt="dartyti.me" />
-      </div>
-      <img src={'../static/word_logo.png'} alt="dartyti.me" style={wordLogoStyle} />
-      <div>
-        {session.user ? (
-          <div style={userHeader}>
-            <img
-              style={userImgStyle}
-              src={
-                (session.user.images && session.user.images.length && session.user.images[0].url) ||
-                '../static/user-icon.png'
-              }
-              width="40"
-              height="40"
-              alt={getNameFromUser(session.user)}
-              title={getNameFromUser(session.user)}
-            />
-            <div style={userNameStyle}>
-              {getNameFromUser(session.user)
-                ? `Welcome to the darty, ${getNameFromUser(session.user).split(' ')[0]}`
-                : 'Welcome to the darty'}
-            </div>
+      <div style={wordLogoStyle}>Darty Time</div>
+      {session.user ? (
+        <div style={userHeader}>
+          <img
+            style={userImgStyle}
+            src={
+              (session.user.images && session.user.images.length && session.user.images[0].url) ||
+              '../static/user-icon.png'
+            }
+            width="40"
+            height="40"
+            alt={getNameFromUser(session.user)}
+            title={getNameFromUser(session.user)}
+          />
+          <div style={userNameStyle}>
+            {getNameFromUser(session.user)
+              ? `We're glad you're here, ${getNameFromUser(session.user).split(' ')[0]}`
+              : `We're glad you're here`}
           </div>
-        ) : (
-          <button className="btn btn--dark" style={{ width: '360px' }} onClick={login}>
-            <style jsx>{ButtonStyle}</style>
-            <style jsx>{ButtonDarkStyle}</style>
-            Login with Spotify to sync music
-          </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <button className="btn btn--dark" style={{ width: '360px' }} onClick={login}>
+          <style jsx>{ButtonStyle}</style>
+          <style jsx>{ButtonDarkStyle}</style>
+          Login with Spotify to sync music
+        </button>
+      )}
     </div>
   </div>
 );

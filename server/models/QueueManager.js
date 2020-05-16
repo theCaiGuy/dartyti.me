@@ -15,6 +15,7 @@ class QueueManager {
     this.spotifyApi = options.spotifyApi;
     this.playedHistory = [];
     this.users = options.users;
+    this.timeout = null;
   }
 
   handleQueueChanged() {
@@ -64,6 +65,9 @@ class QueueManager {
 
   play() {
     console.log('api.js > play');
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
     if (this.queue.length > 0) {
       console.log('api.js > play has queue');
       // something to play!
@@ -79,7 +83,7 @@ class QueueManager {
         track: queueItem.track,
         user: queueItem.user
       });
-      setTimeout(() => {
+      this.timeout = setTimeout(() => {
         this.play();
       }, 2000 + queueItem.track.duration_ms);
       this.onPlay();
