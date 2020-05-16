@@ -35,6 +35,7 @@ const Section = {
   display: 'inlineBlock',
   width: '70%',
   height: 'auto',
+  minHeight: '400px',
   textAlign: 'center',
   alignContent: 'center',
   marginLeft: '15%',
@@ -110,14 +111,12 @@ class App extends Component {
           style={{
             ...Background,
             backgroundColor: colors.PINK,
-            minHeight: 0
+            flexDirection: 'column'
           }}
         >
           <div style={Banner}>
             <Header />
           </div>
-        </div>
-        <div style={{ ...Background, backgroundColor: colors.PINK }}>
           <div style={Section}>
             <h1>TODO: About</h1>
             <p>Welcome to my site</p>
