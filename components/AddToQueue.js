@@ -83,7 +83,8 @@ const inputDiv = {
   borderColor: colors.GREEN,
   height: 'auto',
   alignItems: 'stretch',
-  overflow: 'auto',
+  overflow: 'hidden',
+  _overflow: 'visible',
   borderRadius: '10px',
   position: 'relative'
 };
