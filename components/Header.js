@@ -13,13 +13,12 @@ const headerStyle = {
   alignItems: 'stretch',
   width: 'auto',
   justifyContent: 'center',
-  textAlign: 'center',
-  width: 'auto'
+  textAlign: 'center'
 };
 
 const logoStyle = {
   float: 'left',
-  paddingRight: '69px',
+  paddingRight: '20px',
   width: '100%',
   maxWidth: '169px'
 };
