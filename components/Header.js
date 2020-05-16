@@ -4,6 +4,7 @@ import { mutePlayback, unmutePlayback } from '../actions/playbackActions';
 import ButtonStyle from './ButtonStyle';
 import ButtonDarkStyle from './ButtonDarkStyle';
 import * as colors from '../constants/color_scheme';
+import GlobalFonts from './HeaderFont';
 
 const headerStyle = {
   height: '100%',
@@ -58,7 +59,7 @@ const wordLogoStyle = {
   marginTop: '10px',
   marginBottom: '10px',
   width: '100%',
-  fontSize: '69px',
+  fontSize: '88px',
   fontFamily: 'Ballpark',
   color: colors.BLUE
 };

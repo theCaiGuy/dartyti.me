@@ -1,4 +1,4 @@
-import Header from './Header';
+import GlobalFonts from './HeaderFont';
 
 const background_styles = {
   backgroundColor: 'white',
@@ -9,14 +9,14 @@ const background_styles = {
 
 const Layout = props => (
   <div style={background_styles}>
+    <GlobalFonts />
     <style jsx>{`
       div {
         color: #333;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 15px;
+        font-size: 18px;
       }
     `}</style>
-    {/* <Header /> */}
     {props.children}
   </div>
 );
