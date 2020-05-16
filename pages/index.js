@@ -110,8 +110,8 @@ class App extends Component {
         <div
           style={{
             ...Background,
-            backgroundColor: colors.PINK,
-            flexDirection: 'column'
+            flexDirection: 'column',
+            background: `linear-gradient(${colors.PINK}, ${colors.ORANGE});`
           }}
         >
           <div style={Banner}>
@@ -121,13 +121,6 @@ class App extends Component {
             <h1>TODO: About</h1>
             <p>Welcome to my site</p>
           </div>
-        </div>
-        <div
-          style={{
-            ...Background,
-            background: `linear-gradient(${colors.PINK}, ${colors.ORANGE});`
-          }}
-        >
           <div style={Section}>
             <h1>TODO: Chat</h1>
           </div>
@@ -135,12 +128,12 @@ class App extends Component {
         <div
           style={{
             ...Background,
-            backgroundColor: colors.ORANGE,
             backgroundImage: 'url(../static/sunset.png)',
-            backgroundPosition: 'bottom left'
+            backgroundPosition: 'bottom left',
+            backgroundColor: colors.ORANGE
           }}
         >
-          <div style={{ ...HalfSectionLeft }}>
+          <div style={HalfSectionLeft}>
             <h1>TODO: Rooms</h1>
           </div>
           <div style={HalfSectionRight}>
