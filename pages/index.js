@@ -33,7 +33,7 @@ const Section = {
 const HalfSectionLeft = {
   display: 'inlineBlock',
   width: '34%',
-  height: 'auto',
+  // height: 'auto',
   textAlign: 'center',
   alignContent: 'center',
   marginLeft: 'auto',
@@ -50,7 +50,7 @@ const HalfSectionLeft = {
 const HalfSectionRight = {
   display: 'inlineBlock',
   width: '34%',
-  height: 'auto',
+  // height: 'auto',
   textAlign: 'center',
   alignContent: 'center',
   marginLeft: '1%',
@@ -64,18 +64,10 @@ const HalfSectionRight = {
   overflow: 'auto'
 };
 
-const Footer = {
-  display: 'inlineBlock',
-  width: '100%',
-  height: 'auto',
-  textAlign: 'center',
-  alignContent: 'center',
-  color: colors.GRAY
-};
-
 const Background = {
   width: '100%',
   height: '100%',
+  minHeight: '600px',
   overflow: 'auto',
   display: 'flex',
   marginBottom: 0,
@@ -96,19 +88,32 @@ class App extends Component {
   render() {
     return (
       <Layout>
-        <div style={{ ...Background, backgroundColor: colors.BLUE }}>
+        <div style={{ ...Background, backgroundColor: colors.PINK }}>
           <div style={Section}>
             <h1>TODO: About</h1>
             <p>Welcome to my site</p>
           </div>
         </div>
-        <div style={{ ...Background, backgroundColor: colors.PINK }}>
+        <div
+          style={{
+            ...Background,
+            // backgroundColor: colors.PINK
+            background: `linear-gradient(${colors.PINK}, ${colors.ORANGE});`
+          }}
+        >
           <div style={Section}>
             <h1>TODO: Chat</h1>
           </div>
         </div>
-        <div style={{ ...Background, backgroundColor: colors.ORANGE }}>
-          <div style={HalfSectionLeft}>
+        <div
+          style={{
+            ...Background,
+            backgroundColor: colors.ORANGE,
+            backgroundImage: 'url(../static/sunset.png)',
+            backgroundPosition: 'bottom left'
+          }}
+        >
+          <div style={{ ...HalfSectionLeft }}>
             <h1>TODO: Rooms</h1>
           </div>
           <div style={HalfSectionRight}>
@@ -121,7 +126,8 @@ class App extends Component {
             backgroundColor: colors.YELLOW,
             backgroundImage: 'url(../static/surf.png)',
             textAlign: 'center',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            minHeight: '1300px'
           }}
         >
           <div style={Section}>
@@ -138,9 +144,6 @@ class App extends Component {
             available <a href="https://github.com/theCaiGuy/dartyti.me">here</a>. Logo courtesy of{' '}
             <a href="https://logomakr.com/">Logo Makr</a>.
           </p>
-        </div>
-        <div style={{ ...Background, backgroundColor: colors.YELLOW }}>
-          <div style={Footer}></div>
         </div>
       </Layout>
     );

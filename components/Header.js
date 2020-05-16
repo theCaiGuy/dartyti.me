@@ -18,9 +18,8 @@ const headerStyle = {
 };
 
 const logoStyle = {
-  height: '169px',
-  width: '169px',
-  marginRight: '69px'
+  marginRight: '69px',
+  overflow: 'auto'
 };
 
 const userHeader = {
@@ -32,7 +31,6 @@ const userHeader = {
 const userNameStyle = {
   lineHeight: '30px',
   fontSize: '18px',
-  float: 'left',
   paddingLeft: '20px',
   fontWeight: 'bold',
   color: colors.GRAY
@@ -47,6 +45,10 @@ const mediaImgStyle = {
   marginRight: '10px'
 };
 
+const wordLogoStyle = {
+  marginTop: '20px'
+};
+
 const getNameFromUser = user => {
   return user.display_name || user.id;
 };
@@ -56,8 +58,8 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
     <div style={logoStyle}>
       <img src={'../static/dartytime_logo.png'} width="169" height="169" alt="dartyti.me" />
     </div>
-    <div>
-      <img src={'../static/word_logo.png'} width="360" alt="dartyti.me" />
+    <div style={{ alignContent: 'center' }}>
+      <img src={'../static/word_logo.png'} width="420" alt="dartyti.me" style={wordLogoStyle} />
       <div>
         {session.user ? (
           <div style={userHeader}>
@@ -81,7 +83,7 @@ const Header = ({ session, muted, mutePlayback, unmutePlayback, login }) => (
             </div>
           </div>
         ) : (
-          <button className="btn btn--dark" style={{ float: 'left', width: '360px' }} onClick={login}>
+          <button className="btn btn--dark" style={{ width: '360px' }} onClick={login}>
             <style jsx>{ButtonStyle}</style>
             <style jsx>{ButtonDarkStyle}</style>
             Login with Spotify to sync music
