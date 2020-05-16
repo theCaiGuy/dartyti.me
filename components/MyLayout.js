@@ -16,7 +16,7 @@ const Layout = props => (
         font-size: 15px;
       }
     `}</style>
-    <Header />
+    {/* <Header /> */}
     {props.children}
   </div>
 );

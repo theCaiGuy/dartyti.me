@@ -10,8 +10,26 @@ import { fetchUsers } from '../actions/usersActions';
 import { fetchPlayingContext } from '../actions/playbackActions';
 import Layout from '../components/MyLayout.js';
 import * as colors from '../constants/color_scheme';
+import Header from '../components/Header';
 
 library.add(fab);
+
+const Banner = {
+  display: 'inlineBlock',
+  width: '70%',
+  height: 'auto',
+  textAlign: 'center',
+  alignContent: 'center',
+  marginLeft: '15%',
+  marginRight: '15%',
+  backgroundColor: 'white',
+  borderRadius: '20px',
+  marginTop: '30px',
+  marginBottom: '30px',
+  paddingTop: '10px',
+  paddingBottom: '10px',
+  overflow: 'auto'
+};
 
 const Section = {
   display: 'inlineBlock',
@@ -88,6 +106,17 @@ class App extends Component {
   render() {
     return (
       <Layout>
+        <div
+          style={{
+            ...Background,
+            backgroundColor: colors.PINK,
+            minHeight: 0
+          }}
+        >
+          <div style={Banner}>
+            <Header />
+          </div>
+        </div>
         <div style={{ ...Background, backgroundColor: colors.PINK }}>
           <div style={Section}>
             <h1>TODO: About</h1>
@@ -97,7 +126,6 @@ class App extends Component {
         <div
           style={{
             ...Background,
-            // backgroundColor: colors.PINK
             background: `linear-gradient(${colors.PINK}, ${colors.ORANGE});`
           }}
         >
